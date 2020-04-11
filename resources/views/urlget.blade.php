@@ -1,18 +1,17 @@
 {{csrf_field()}}
-
-<form method="get">
-    <p>検索するURLを入力してください</p>
-    <input type="text" name="url"size="20">
+<h2>URLから10年分タイトルを検索！</h2>
+<p>このサイトはURLを上のフォームに入力すると、そのサイトの過去１０年分のタイトルを取得できます。</p>
+<p>※しばらく時間がかかります。気長にしばらくお待ち下さい。修正予定です。</p>
+<form method='get'>
+    <input type='text' name='url' placeholder='検索するURL'>
     <p>
-        <input type="submit" value="タイトルを取得">
+        <input type='submit' value='タイトルを取得'>
     </p>
     <p>
         <a href="/">リセットする</a>
     </p>
 </form>
-<h2>このサイトの説明</h2>
-<p>このサイトはURLを上のフォームに入力すると、そのサイトの過去１０年分のタイトルを取得できます。</p>
-<p>※しばらく時間がかかります。気長にしばらくお待ち下さい。修正予定です。</p>
+
 <?php
 
 if (isset($_GET['url'])) {
@@ -30,6 +29,7 @@ if (isset($_GET['url'])) {
 //        echo $url_year. "年<br>";
         $souce = file_get_contents($past_url);
         if(preg_match('/<title>(.*?)<\/title>/i',$souce,$result)==1){
+            echo $url_year.'年<br>';
             echo '<textarea cols="40" rows="3">';
             echo $result[1];
             echo'</textarea><br>';
