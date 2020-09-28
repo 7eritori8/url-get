@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class UrlgetController extends Controller
 {
     public function index(){
-        return view('urlget');
+        $data["year"] =date("Y");
+        return view('urlget',$data);
     }
     //
 }
